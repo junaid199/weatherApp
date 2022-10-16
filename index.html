@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+       
+       #weatherCard{
+        font-family: 'Times New Roman', Times, serif;
+        font-style: normal;
+        color:#0E0C0B;
+       } 
+       body{
+            background-image: url("backG.jpg");
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="weatherCard">
+    <h1>Weather App</h1>
+    
+    <form onsubmit="getWeather(); return false">
+        <input type="text" id="cityName">
+        <button type="submit">Get Weather</button>
+        <h2 id="result"></h2>
+    </form>
+
+    </div>
+
+ 
+
+
+    
+
+    <script>
+        let getWeather = () => {
+
+            let cityName = document.querySelector('#cityName').value;
+
+            axios.get(`https://api.openweathermap.org/data/2.5/weather?units=metric&appid=fbf6a70a1837d625933da75ef7edad39&q=${cityName}`)
+                .then(function (response) {
+                    // handle success
+                    console.log("response is successful");
+                    console.log(response.data);
+                    document.querySelector('#result').innerHTML=
+                    `<h2>${response.data.name}</h2>
+                    <h3>${response.data.main.temp}°C <img src="partly_cloudy.png"> </h3>
+                    <h3>Feels Like:${response.data.main.feels_like}</h3>
+                    <h3>Humidity:  ${response.data.main.humidity} %</h3>
+                    <h4> Max:${response.data.main.temp_max}°C</h4>
+                    <h4> Min:${response.data.main.temp_min}°C</h4>
+                    <h5> Visibility:${response.data.visibility} Meter</h5>`
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+        }
+
+    </script>
+</body>
+
+</html>
