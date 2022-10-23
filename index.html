@@ -64,7 +64,7 @@
                     <h4> Min:${response.data.main.temp_min}°C</h4>
                     <h4> Visibility:${response.data.visibility} Meter</h4>
                     <h4> Wind Speed:${response.data.wind.speed} km</h4>
-                    <h5>moment().format('MMMM Do YYYY, h:mm:ss a');</h5>`
+                    <h5>${moment().format('MMMM Do YYYY, h:mm:ss a')}</h5>`
                     document.querySelector('#icon').src =`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
                     
                 })
