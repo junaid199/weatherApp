@@ -34,6 +34,7 @@
             <input type="text" id="cityName">
             <button type="submit">Get Weather</button>
             <div id="result"></div>
+            
         </form>
 
     </div>
@@ -57,12 +58,14 @@
                         `<h2>${response.data.name}</h2>
                     <h2>${response.data.main.temp}°C  </h2>
                     <h3>Feels Like:${response.data.main.feels_like}</h3>
-                    <h3>${response.data.weather[0].description} <img src="partly_cloudy.png"></h3>
+                    <h3>${response.data.weather[0].description} <img id="icon"> </h3>
                     <h3>Humidity:  ${response.data.main.humidity} %</h3>
                     <h4> Max:${response.data.main.temp_max}°C</h4>
                     <h4> Min:${response.data.main.temp_min}°C</h4>
                     <h4> Visibility:${response.data.visibility} Meter</h4>
-                    <h4> Wind Speed:${response.data.wind.speed} km</h4>`
+                    <h4> Wind Speed:${response.data.wind.speed} km</h4>
+                    <h5>moment().format('MMMM Do YYYY, h:mm:ss a');</h5>`
+                    document.querySelector('#icon').src =`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
                     
                 })
                 .catch(function (error) {
